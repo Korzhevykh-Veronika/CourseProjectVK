@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Course Project</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/script.js" defer></script>
+</head>
+
+<body>
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'Interval')">Interval</button>
+        <button class="tablinks" onclick="openTab(event, 'Holidays')">Holidays</button>
+    </div>
+
+    <div id="Interval" class="tabcontent active" style="display: block;">
+        <h2> Time interval </h2>
+        <div class="container col-7">
+            <form class="row">
+                <label for="startDate" class="col-2 col-form-label">Start date:</label>
+                <div class="col-md-4">
+                    <input type="date" id="startDate" class="form-control">
+                </div>
+
+                <label for="endDate" class="col-2 col-form-label">End date:</label>
+                <div class="col-md-4">
+                    <input type="date" id="endDate" class="form-control" disabled>
+                </div>
+                <label for="intervalPer" class="col-1 col-form-label">Interval:</label>
+                <div class="col-md-2">
+                    <select id="intervalPer" name="intervalPer" class="form-select">
+                        <option value="week">Week</option>
+                        <option value="month">Month</option>
+                    </select>
+                </div>
+                <label for="days" class="col-1 col-form-label">Days:</label>
+                <div class="col-md-2">
+                    <select id="days" name="days" class="form-select">
+                        <option value="allDays">All days</option>
+                        <option value="weekdays">Weekdays</option>
+                        <option value="weekends">Weekends</option>
+                    </select>
+                </div>
+                <label for="calculate" class="col-2 col-form-label">Calculate by:</label>
+                <div class="col-md-4">
+                    <select id="calculate" name="calculate" class="form-select">
+                        <option value="numberDays">The number of days</option>
+                        <option value="numberHours">The number of hours</option>
+                        <option value="numberMinutes">The number of minutes</option>
+                        <option value="numberSeconds">The number of seconds</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-outline-success">Calculate</button>
+                </div>
+            </form>
+        </div>
+
+        <h2>Result table</h2>
+        <div class="container">
+            <table class="col-9">
+                <tr>
+                    <th>Start date</th>
+                    <th>End date</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="Holidays" class="tabcontent">
+        <h2>Сalculate the holidays</h2>
+        <div class="container col-9">
+            <form class="row">
+                <label for="country" class="col-3 col-form-label">Choose country:</label>
+                <div class="col-md-3">
+                    <select id="country" name="country" class="form-select">
+                        <option value="UK">Ukraine</option>
+                        <option value="US">US</option>
+                    </select>
+                </div>
+                <label for="year" class="col-3 col-form-label">Choose year:</label>
+                <div class="col-md-3">
+                    <select id="year" name="year" class="form-select" disabled>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-outline-success">Calculate</button>
+                </div>
+            </form>
+        </div>
+        <h2>Result table</h2>
+        <div class="container">
+            <table class="col-9">
+                <tr>
+                    <th>Date</th>
+                    <th>Holiday name</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
