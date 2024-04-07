@@ -1,59 +1,34 @@
-"use strict";
+import {
+  startDateInput,
+  endDateInput,
+  countrySelector,
+  yearSelector,
+  calculateIntervalButton
+} from "./DOMObjects.js";
+import {
+  handleStartDateInput,
+  handleEndDateInput,
+} from "./dateHandler.js";
+import {
+  handleCountrySelectorChange,
+} from "./countryHandler.js";
+import { calculateInterval } from "./calculateInterval.js";
 
-function openTab(event, tabName) {
-  let tabcontent = document.querySelectorAll(".tabcontent");
-  tabcontent.forEach((item) => {
-    item.style.display = "none";
-  });
-
-  let tablinks = document.querySelectorAll(".tablinks");
-  tablinks.forEach((item) => {
-    item.className = item.className.replace(" active", "");
-  });
-
-  document.getElementById(tabName).style.display = "block";
-  event.currentTarget.className += " active";
-}
-
-const startDateInput = document.getElementById("startDate");
-const endDateInput = document.getElementById("endDate");
-
-startDateInput.addEventListener('input', function() {
-    endDateInput.disabled = false;
-    endDateInput.min = this.value;
-});
-
-startDateInput.addEventListener("change", function () {
-  endDateInput.min = this.value;
-  if (endDateInput.value < endDateInput.min) {
-    endDateInput.value = "";
+document.addEventListener("DOMContentLoaded", function () {
+  for (let year = 2001; year <= 2049; year++) {
+    const option = document.createElement("option");
+    option.value = year;
+    option.textContent = year;
+    yearSelector.appendChild(option);
   }
+
+  yearSelector.value = new Date().getFullYear();
 });
 
-endDateInput.addEventListener("change", function () {
-  startDateInput.max = this.value;
-  if (startDateInput.value > startDateInput.max) {
-    startDateInput.value = "";
-  }
-});
+startDateInput.addEventListener("input", handleStartDateInput);
+endDateInput.addEventListener("input", handleEndDateInput);
+countrySelector.addEventListener("change", handleCountrySelectorChange);
 
-const countrySelector = document.getElementById("country");
-const yearSelector = document.getElementById("year");
+calculateIntervalButton.addEventListener("click", calculateInterval);
 
-countrySelector.addEventListener('change', function() {
-    if (countrySelector.value !== "") {
-        yearSelector.disabled = false;        
-        yearSelector.innerHTML = "";
-        
-        for (let year = 2001; year <= 2049; year++) {
-            const option = document.createElement('option');            
-            option.value = year;
-            option.textContent = year;
 
-            yearSelector.appendChild(option);
-        }
-    } else {
-        yearSelector.disabled = true;
-        yearSelector.innerHTML = "";
-    }
-});
