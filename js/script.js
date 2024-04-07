@@ -12,7 +12,7 @@ import {
 import {
   handleCountrySelectorChange,
 } from "./countryHandler.js";
-import { calculateInterval } from "./calculateInterval.js";
+import { calculateInterval } from "./calculationHandler.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   for (let year = 2001; year <= 2049; year++) {

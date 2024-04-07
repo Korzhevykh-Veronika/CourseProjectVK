@@ -1,10 +1,16 @@
 import {
-    startDateInput,
-    endDateInput,
-    calculateBy,
-    intervalPer,
-    daysOption
-  } from "./DOMObjects.js";
+  startDateInput,
+  endDateInput,
+  calculateBy,
+  intervalPer,
+  daysOption
+} from "./DOMObjects.js";
+
+import {
+  storeStartDateInStorage,
+  storeEndDateInStorage,
+  storeResultInStorage,
+} from "./storage.js";
 
 export function calculateInterval() {
     let resultCalculateBy;
@@ -42,7 +48,7 @@ export function calculateInterval() {
     }
   
     let weekdays = 0;
-    for (let i = startDate; i <= endDate; i += 24 * 60 * 60 * 1000) {
+    for (let i = startDate; i <= endDate; i += 1000 * 60 * 60 * 24) {
       let day = new Date(i).getDay();
       if (day >= 1 && day <= 5) {
         weekdays++;
@@ -66,4 +72,8 @@ export function calculateInterval() {
     console.log(resultCalculateBy);
     console.log(resultIntervalPer);
     console.log(resultCountDays);
+
+    storeStartDateInStorage(new Date(startDateInput.value));
+    storeEndDateInStorage(new Date(endDateInput.value));
+    storeResultInStorage(resultCalculateBy);
 }
