@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <script src="./js/tab.js" defer></script>
-    <script  type="module" src="./js/script.js" defer></script>
+    <script type="module" src="./js/script.js" defer></script>
 </head>
 
 <body>
@@ -35,12 +35,18 @@
                 <div class="col-md-4">
                     <input type="date" id="endDate" class="form-control" disabled>
                 </div>
-                <label for="intervalPer" class="col-1 col-form-label">Interval:</label>
+                <label for="intervalPer" class="col-1 col-form-label">Preset:</label>
                 <div class="col-md-2">
-                    <select id="intervalPer" name="intervalPer" class="form-select">
-                        <option value="week">Week</option>
-                        <option value="month">Month</option>
-                    </select>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="week"
+                            value="week">
+                        <label class="form-check-label" for="inlineRadio1">Week</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="month"
+                            value="month">
+                        <label class="form-check-label" for="month">Month</label>
+                    </div>
                 </div>
                 <label for="daysOption" class="col-1 col-form-label">Days:</label>
                 <div class="col-md-2">
@@ -60,7 +66,8 @@
                     </select>
                 </div>
                 <div class="col-12">
-                    <button id = "calculateInterval" type="submit" class="btn btn-outline-success" disabled>Calculate</button>
+                    <button id="calculateInterval" type="submit" class="btn btn-outline-success"
+                        disabled>Calculate</button>
                 </div>
             </form>
         </div>

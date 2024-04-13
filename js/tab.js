@@ -1,4 +1,4 @@
-function openTab(event, tabName) {
+const openTab = (event, tabName) => {
     let tabcontent = document.querySelectorAll(".tabcontent");
     tabcontent.forEach((item) => {
         item.style.display = "none";

@@ -3,11 +3,18 @@ import {
   endDateInput,
   countrySelector,
   yearSelector,
-  calculateIntervalButton
+  calculateIntervalButton,
+  weekPreset,
+  monthPreset,
+  radioButtons
 } from "./DOMObjects.js";
 import {
   handleStartDateInput,
   handleEndDateInput,
+  addWeekToDate,
+  addMonthToDate,
+  getCurrentDate,
+  setPreset
 } from "./dateHandler.js";
 import {
   handleCountrySelectorChange,
@@ -27,8 +34,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 startDateInput.addEventListener("input", handleStartDateInput);
 endDateInput.addEventListener("input", handleEndDateInput);
+radioButtons.forEach((elem) => {
+  elem.addEventListener("change", setPreset)
+});
+
 countrySelector.addEventListener("change", handleCountrySelectorChange);
 
 calculateIntervalButton.addEventListener("click", calculateInterval);
-
-

@@ -7,7 +7,7 @@ const getStartDateFromStorage = () => {
   };
 
 const getEndStorageFromStorage = () => {
-return JSON.parse(localStorage.getItem(END_DATE_STORAGE_KEY)) || [];
+    return JSON.parse(localStorage.getItem(END_DATE_STORAGE_KEY)) || [];
 };
 
 const getResultFromStorage = () => {
@@ -22,7 +22,7 @@ export const storeStartDateInStorage = (newStartDate) => {
 };
 
 export const storeEndDateInStorage = (newEndDate) => {
-    const endDates = getResultFromStorage();
+    const endDates = getEndStorageFromStorage();
     endDates.push(newEndDate);
   
     localStorage.setItem(END_DATE_STORAGE_KEY, JSON.stringify(endDates));

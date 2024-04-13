@@ -4,7 +4,9 @@ export const countrySelector = document.getElementById("country");
 export const yearSelector = document.getElementById("year");
 
 export const calculateBy = document.getElementById("calculateBy");
-export const intervalPer = document.getElementById("intervalPer");
 export const daysOption = document.getElementById("daysOption");
+export const radioButtons = document.querySelectorAll(".form-check-input");
+export const weekPreset = document.getElementById("week");
+export const monthPreset = document.getElementById("month");
 
 export const calculateIntervalButton = document.getElementById("calculateInterval");

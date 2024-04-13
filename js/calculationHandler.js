@@ -2,7 +2,6 @@ import {
   startDateInput,
   endDateInput,
   calculateBy,
-  intervalPer,
   daysOption
 } from "./DOMObjects.js";
 
@@ -12,40 +11,15 @@ import {
   storeResultInStorage,
 } from "./storage.js";
 
-export function calculateInterval() {
-    let resultCalculateBy;
-    let resultIntervalPer;
+export const calculateInterval = () => {
+    let calculatedResult;
     let resultCountDays;
   
     let startDate = Date.parse(startDateInput.value);
     let endDate = Date.parse(endDateInput.value);
+
     let interval = Math.abs(startDate - endDate);
-  
-    switch (calculateBy.value) {
-      case "numberSeconds":
-        resultCalculateBy = Math.floor(interval / 1000);
-        break;
-      case "numberMinutes":
-        resultCalculateBy = Math.floor(interval / (1000 * 60));
-        break;
-      case "numberHours":
-        resultCalculateBy = Math.floor(interval / (1000 * 60 * 60));
-        break;
-      case "numberDays":
-        resultCalculateBy = Math.floor(interval / (1000 * 60 * 60 * 24));
-        break;
-    }
-  
-    let diffInDays = Math.floor(interval / (1000 * 60 * 60 * 24));
-  
-    switch (intervalPer.value) {
-      case "week":
-        resultIntervalPer = Math.floor(diffInDays / 7);
-        break;
-      case "month":
-        resultIntervalPer = Math.floor(diffInDays / 30);
-        break;
-    }
+    let intervalInDays = Math.floor(interval / (1000 * 60 * 60 * 24));
   
     let weekdays = 0;
     for (let i = startDate; i <= endDate; i += 1000 * 60 * 60 * 24) {
@@ -54,12 +28,12 @@ export function calculateInterval() {
         weekdays++;
       }
     }
-  
-    let weekends = diffInDays - weekdays;
+
+    let weekends = intervalInDays - weekdays;
   
     switch (daysOption.value) {
       case "allDays":
-        resultCountDays = diffInDays;
+        resultCountDays = intervalInDays;
         break;
       case "weekdays":
         resultCountDays = weekdays;
@@ -69,11 +43,22 @@ export function calculateInterval() {
         break;
     }
   
-    console.log(resultCalculateBy);
-    console.log(resultIntervalPer);
-    console.log(resultCountDays);
+    switch (calculateBy.value) {
+      case "numberSeconds":
+        calculatedResult = Math.floor(resultCountDays * (24 * 60 * 60));
+        break;
+      case "numberMinutes":
+        calculatedResult = Math.floor(resultCountDays * (24 * 60));
+        break;
+      case "numberHours":
+        calculatedResult = Math.floor(resultCountDays * 24);
+        break;
+      case "numberDays":
+        calculatedResult = resultCountDays;
+        break;
+    }
 
     storeStartDateInStorage(new Date(startDateInput.value));
     storeEndDateInStorage(new Date(endDateInput.value));
-    storeResultInStorage(resultCalculateBy);
+    storeResultInStorage(calculatedResult);
 }

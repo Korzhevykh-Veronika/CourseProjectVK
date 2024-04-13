@@ -3,7 +3,7 @@ import {
     yearSelector,
   } from "./DOMObjects.js";
 
-export function handleCountrySelectorChange() {
+export const handleCountrySelectorChange = () => {
     if (countrySelector.value !== "") {
       yearSelector.disabled = false;
     } else {
