@@ -9,6 +9,6 @@ export const radioButtons = document.querySelectorAll(".form-check-input");
 export const weekPreset = document.getElementById("week");
 export const monthPreset = document.getElementById("month");
 
-export const trHeaderString = document.querySelector(".headers");
+export const table = document.querySelector(".intervalTable");
 
 export const calculateIntervalButton = document.getElementById("calculateInterval");
