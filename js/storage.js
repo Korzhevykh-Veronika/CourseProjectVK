@@ -34,15 +34,3 @@ export const storeResultInStorage = (newResult) => {
   
     localStorage.setItem(RESULT_STORAGE_KEY, JSON.stringify(results));
 };
-  
-const clearStartDateFromStorage = () => {
-    localStorage.removeItem(START_DATE_STORAGE_KEY);
-};
-
-const clearEndDatetFromStorage = () => {
-    localStorage.removeItem(END_DATE_STORAGE_KEY);
-};
-
-const clearResultFromStorage = () => {
-    localStorage.removeItem(RESULT_STORAGE_KEY);
-};

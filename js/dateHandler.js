@@ -1,7 +1,8 @@
 import {
   startDateInput,
   endDateInput,
-  calculateIntervalButton
+  calculateIntervalButton,
+  yearSelector
 } from "./DOMObjects.js";
 
 export const handleStartDateInput = (event) => {
@@ -15,6 +16,17 @@ export const handleEndDateInput = (event) => {
   if (startDateInput.value > startDateInput.max) {
     startDateInput.value = "";
   }
+}
+
+export const handleYearSelector = () => {
+  for (let year = 2001; year <= 2049; year++) {
+    const option = document.createElement("option");
+    option.value = year;
+    option.textContent = year;
+    yearSelector.appendChild(option);
+  }
+  
+  yearSelector.value = new Date().getFullYear();
 }
 
 export const addWeekToDate = (date) => {
@@ -35,7 +47,7 @@ export const getCurrentDate = () => {
 }
 
 export const setPreset = (event) => {
-  endDateInput.disabled = false;
+  calculateIntervalButton.disabled = false;
   switch(event.target.value){
     case "week":
       startDateInput.value = getCurrentDate();

@@ -2,7 +2,8 @@ import {
   startDateInput,
   endDateInput,
   calculateBy,
-  daysOption
+  daysOption,
+  trHeaderString
 } from "./DOMObjects.js";
 
 import {
@@ -58,7 +59,25 @@ export const calculateInterval = () => {
         break;
     }
 
-    storeStartDateInStorage(new Date(startDateInput.value));
-    storeEndDateInStorage(new Date(endDateInput.value));
+    storeStartDateInStorage(startDateInput.value);
+    storeEndDateInStorage(endDateInput.value);
     storeResultInStorage(calculatedResult);
+
+    addNewNote(startDateInput.value, endDateInput.value, calculatedResult);
 }
+
+const addNewNote = (startDate, endDate, result) => {
+  const tr = document.createElement("tr");
+  const tdStartDate = document.createElement("td");
+  const tdEndDate = document.createElement("td");
+  const tdResult = document.createElement("td");
+
+  tdStartDate.textContent = startDate;
+  tdEndDate.textContent = endDate;
+  tdResult.textContent = result;
+
+  trHeaderString.after(tr);
+  tr.append(tdStartDate);
+  tr.append(tdEndDate);
+  tr.append(tdResult);
+};
