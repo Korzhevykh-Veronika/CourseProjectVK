@@ -14,6 +14,7 @@ import {
 import { addNewNoteToTable } from "./tableHandler.js";
 
 export const calculateInterval = () => {
+  event.preventDefault();
   let calculatedResult;
   let resultCountDays;
 
