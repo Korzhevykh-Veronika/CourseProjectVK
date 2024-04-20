@@ -3,6 +3,7 @@ import {
   endDateInput,
   calculateIntervalButton,
   yearSelector,
+  holidaysTable,
 } from "./DOMObjects.js";
 
 export const handleStartDateInput = (event) => {
