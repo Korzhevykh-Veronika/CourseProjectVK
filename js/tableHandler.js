@@ -67,12 +67,18 @@ export const addNewNoteToCountryTable = (date, holidayName) => {
   lastInsertedRowForCountryTable = tr;
 };
 
-export const sortHolidaysByDate = (date) => {
+export const sortHolidaysByDate = () => {
   const rows = Array.from(holidaysTable.querySelectorAll("tr")).slice(1);
 
+  rows.forEach(row => {
+    const dateCell = row.cells[0];
+    const dateValue = new Date(dateCell.textContent);
+    row.setAttribute("data-date", dateValue.getTime());
+  });
+
   rows.sort((a, b) => {
-    const dateA = new Date(a.cells[0].textContent);
-    const dateB = new Date(b.cells[0].textContent);
+    const dateA = parseInt(a.getAttribute("data-date"));
+    const dateB = parseInt(b.getAttribute("data-date"));
     return dateA - dateB;
   });
 
@@ -81,7 +87,7 @@ export const sortHolidaysByDate = (date) => {
 
   const headerRow = document.createElement("tr");
   const headerCell1 = document.createElement("th");
-  headerCell1.innerHTML = 'Date <i class="fa fa-sort"></i>';
+  headerCell1.innerHTML = 'Date <button type="submit"><i class="fa fa-sort"></i></button>';
   headerCell1.id = "dateHeader";
   const headerCell2 = document.createElement("th");
   headerCell2.textContent = "Holiday name";
@@ -93,3 +99,4 @@ export const sortHolidaysByDate = (date) => {
 
   holidaysTable.parentNode.replaceChild(newTable, holidaysTable);
 };
+

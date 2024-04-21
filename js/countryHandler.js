@@ -13,6 +13,7 @@ export const handleCountrySelectorChange = () => {
     yearSelector.disabled = true;
     yearSelector.selectedIndex = 0;
     yearSelector.value = new Date().getFullYear();
+    calculateHolidaysButton.disabled = true;
   }
 };
 
