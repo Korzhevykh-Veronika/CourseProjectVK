@@ -80,7 +80,7 @@ export const calculateInterval = () => {
   );
 };
 
-export const calculateHolidays = async () => {
+export const searchHolidays = async () => {
   event.preventDefault();
 
   try {

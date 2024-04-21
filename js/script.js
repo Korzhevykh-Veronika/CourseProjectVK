@@ -17,7 +17,7 @@ import {
   handleCountrySelectorChange,
   handleCountrySelector,
 } from "./countryHandler.js";
-import { calculateInterval, calculateHolidays } from "./calculationHandler.js";
+import { calculateInterval, searchHolidays } from "./calculationHandler.js";
 import { readTableFromStorage, sortHolidaysByDate } from "./tableHandler.js";
 
 document.addEventListener("DOMContentLoaded", handleYearSelector);
@@ -34,4 +34,4 @@ countrySelector.addEventListener("change", handleCountrySelectorChange);
 dateHeader.addEventListener("click", sortHolidaysByDate);
 
 calculateIntervalButton.addEventListener("click", calculateInterval);
-calculateHolidaysButton.addEventListener("click", calculateHolidays);
+calculateHolidaysButton.addEventListener("click", searchHolidays);

@@ -16,4 +16,4 @@ export const intervalTable = document.querySelector(".intervalTable");
 export const holidaysTable = document.querySelector(".holidaysTable");
 
 export const calculateIntervalButton = document.getElementById("calculateInterval");
-export const calculateHolidaysButton = document.getElementById("calculateHolidays");
+export const calculateHolidaysButton = document.getElementById("searchHolidays");
