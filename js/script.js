@@ -5,7 +5,7 @@ import {
   calculateIntervalButton,
   calculateHolidaysButton,
   radioButtons,
-  dateHeader,
+  dateHeaderButton,
 } from "./DOMObjects.js";
 import {
   handleStartDateInput,
@@ -31,7 +31,7 @@ radioButtons.forEach((elem) => {
   elem.addEventListener("change", setPreset);
 });
 countrySelector.addEventListener("change", handleCountrySelectorChange);
-dateHeader.addEventListener("click", sortHolidaysByDate);
+dateHeaderButton.addEventListener("click", sortHolidaysByDate);
 
 calculateIntervalButton.addEventListener("click", calculateInterval);
 calculateHolidaysButton.addEventListener("click", searchHolidays);

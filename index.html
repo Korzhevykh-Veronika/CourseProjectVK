@@ -100,18 +100,20 @@
                     </select>
                 </div>
                 <div class="col-12">
-                    <button type="submit" id="searchHolidays" class="btn btn-outline-success"
-                        disabled>Search</button>
+                    <button type="submit" id="searchHolidays" class="btn btn-outline-success" disabled>Search</button>
                 </div>
             </form>
         </div>
         <h2>Result table</h2>
         <div class="container">
             <table class="col-9 holidaysTable">
-                <tr>
-                    <th id="dateHeader">Date <button type="submit"><i class="fa fa-sort"></i></button></th>
-                    <th>Holiday name</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th id="dateHeader" data-sort-order="asc">Date <button  id="dateHeaderButton" type="submit"><i class="fa fa-sort"></i></button></th>
+                        <th>Holiday name</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
             </table>
         </div>
     </div>

@@ -5,6 +5,7 @@ import {
   daysOption,
   countrySelector,
   yearSelector,
+  holidaysTableBody
 } from "./DOMObjects.js";
 
 import {
@@ -81,10 +82,14 @@ export const calculateInterval = () => {
 };
 
 export const searchHolidays = async () => {
-  event.preventDefault();
-
+  event.preventDefault();  
+ 
   try {
     hideAlert();
+
+    if(holidaysTableBody.innerHTML !== ""){
+      holidaysTableBody.innerHTML = "";
+    }
 
     let {
       response: { holidays },

@@ -1,4 +1,9 @@
-import { intervalTable, holidaysTable } from "./DOMObjects.js";
+import {
+  intervalTable,
+  holidaysTable,
+  dateHeader,
+  holidaysTableBody,
+} from "./DOMObjects.js";
 import {
   getStartDateFromStorage,
   getEndStorageFromStorage,
@@ -6,7 +11,6 @@ import {
 } from "./storage.js";
 
 let lastInsertedRowForIntervalTable = null;
-let lastInsertedRowForCountryTable = null;
 
 export const readTableFromStorage = () => {
   const startDates = getStartDateFromStorage();
@@ -53,50 +57,27 @@ export const addNewNoteToCountryTable = (date, holidayName) => {
   const tdHoliday = document.createElement("td");
 
   tdDate.textContent = date;
+  tdDate.setAttribute("data-date", date);
   tdHoliday.textContent = holidayName;
 
   tr.appendChild(tdDate);
   tr.appendChild(tdHoliday);
 
-  if (!lastInsertedRowForCountryTable) {
-    holidaysTable.appendChild(tr);
-  } else {
-    lastInsertedRowForCountryTable.after(tr);
-  }
-
-  lastInsertedRowForCountryTable = tr;
+  holidaysTableBody.appendChild(tr);
 };
 
 export const sortHolidaysByDate = () => {
-  const rows = Array.from(holidaysTable.querySelectorAll("tr")).slice(1);
-
-  rows.forEach(row => {
-    const dateCell = row.cells[0];
-    const dateValue = new Date(dateCell.textContent);
-    row.setAttribute("data-date", dateValue.getTime());
-  });
+  const sortOrder = dateHeader.dataset.sortOrder;
+  const rows = Array.from(document.querySelectorAll(".holidaysTable tbody tr"));
 
   rows.sort((a, b) => {
-    const dateA = parseInt(a.getAttribute("data-date"));
-    const dateB = parseInt(b.getAttribute("data-date"));
-    return dateA - dateB;
+    const dateA = new Date(a.cells[0].dataset.date);
+    const dateB = new Date(b.cells[0].dataset.date);
+    return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
   });
 
-  const newTable = document.createElement("table");
-  newTable.classList.add("col-9", "holidaysTable");
+  holidaysTableBody.innerHTML = "";
+  rows.forEach((row) => holidaysTableBody.appendChild(row));
 
-  const headerRow = document.createElement("tr");
-  const headerCell1 = document.createElement("th");
-  headerCell1.innerHTML = 'Date <button type="submit"><i class="fa fa-sort"></i></button>';
-  headerCell1.id = "dateHeader";
-  const headerCell2 = document.createElement("th");
-  headerCell2.textContent = "Holiday name";
-  headerRow.appendChild(headerCell1);
-  headerRow.appendChild(headerCell2);
-  newTable.appendChild(headerRow);
-
-  rows.forEach((row) => newTable.appendChild(row));
-
-  holidaysTable.parentNode.replaceChild(newTable, holidaysTable);
+  dateHeader.dataset.sortOrder = sortOrder === "asc" ? "desc" : "asc";
 };
-
