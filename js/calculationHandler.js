@@ -3,6 +3,9 @@ import {
   endDateInput,
   calculateBy,
   daysOption,
+  countrySelector,
+  yearSelector,
+  holidaysTableBody
 } from "./DOMObjects.js";
 
 import {
@@ -10,10 +13,16 @@ import {
   storeEndDateInStorage,
   storeResultInStorage,
 } from "./storage.js";
+import { api } from "./api.js";
 
-import { addNewNoteToTable } from "./tableHandler.js";
+import {
+  addNewNoteToIntervalTable,
+  addNewNoteToCountryTable,
+} from "./tableHandler.js";
+import { showAlert, hideAlert } from "./alert.js";
 
 export const calculateInterval = () => {
+  event.preventDefault();
   let calculatedResult;
   let resultCountDays;
 
@@ -65,5 +74,39 @@ export const calculateInterval = () => {
   storeEndDateInStorage(endDateInput.value);
   storeResultInStorage(calculatedResult);
 
-  addNewNoteToTable(startDateInput.value, endDateInput.value, calculatedResult);
+  addNewNoteToIntervalTable(
+    startDateInput.value,
+    endDateInput.value,
+    calculatedResult
+  );
+};
+
+export const searchHolidays = async () => {
+  event.preventDefault();  
+ 
+  try {
+    hideAlert();
+
+    if(holidaysTableBody.innerHTML !== ""){
+      holidaysTableBody.innerHTML = "";
+    }
+
+    let {
+      response: { holidays },
+    } = await api.getAllHolidays(countrySelector.value, yearSelector.value);
+
+    holidays.forEach((response) => {
+      let {
+        name,
+        date: {
+          datetime: { year, month, day },
+        },
+      } = response;
+      let fullDate = `${year}-${month}-${day}`;
+
+      addNewNoteToCountryTable(fullDate, name);
+    });
+  } catch (error) {
+    showAlert(error.message, "danger");
+  }
 };

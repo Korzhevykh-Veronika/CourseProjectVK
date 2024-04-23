@@ -3,7 +3,9 @@ import {
   endDateInput,
   countrySelector,
   calculateIntervalButton,
+  calculateHolidaysButton,
   radioButtons,
+  dateHeaderButton,
 } from "./DOMObjects.js";
 import {
   handleStartDateInput,
@@ -11,11 +13,15 @@ import {
   setPreset,
   handleYearSelector,
 } from "./dateHandler.js";
-import { handleCountrySelectorChange } from "./countryHandler.js";
-import { calculateInterval } from "./calculationHandler.js";
-import { readTableFromStorage } from "./tableHandler.js";
+import {
+  handleCountrySelectorChange,
+  handleCountrySelector,
+} from "./countryHandler.js";
+import { calculateInterval, searchHolidays } from "./calculationHandler.js";
+import { readTableFromStorage, sortHolidaysByDate } from "./tableHandler.js";
 
 document.addEventListener("DOMContentLoaded", handleYearSelector);
+document.addEventListener("DOMContentLoaded", handleCountrySelector);
 document.addEventListener("DOMContentLoaded", readTableFromStorage);
 
 startDateInput.addEventListener("input", handleStartDateInput);
@@ -25,5 +31,7 @@ radioButtons.forEach((elem) => {
   elem.addEventListener("change", setPreset);
 });
 countrySelector.addEventListener("change", handleCountrySelectorChange);
+dateHeaderButton.addEventListener("click", sortHolidaysByDate);
 
 calculateIntervalButton.addEventListener("click", calculateInterval);
+calculateHolidaysButton.addEventListener("click", searchHolidays);

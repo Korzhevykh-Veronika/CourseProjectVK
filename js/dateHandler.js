@@ -3,6 +3,7 @@ import {
   endDateInput,
   calculateIntervalButton,
   yearSelector,
+  holidaysTable,
 } from "./DOMObjects.js";
 
 export const handleStartDateInput = (event) => {
@@ -50,11 +51,11 @@ export const setPreset = (event) => {
   calculateIntervalButton.disabled = false;
   switch (event.target.value) {
     case "week":
-      startDateInput.value = getCurrentDate();
+      startDateInput.value = startDateInput.value || getCurrentDate();
       endDateInput.value = addWeekToDate(startDateInput.value);
       break;
     case "month":
-      startDateInput.value = getCurrentDate();
+      startDateInput.value = startDateInput.value || getCurrentDate();
       endDateInput.value = addMonthToDate(startDateInput.value);
       break;
   }

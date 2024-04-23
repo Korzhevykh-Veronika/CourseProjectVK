@@ -9,6 +9,14 @@ export const radioButtons = document.querySelectorAll(".form-check-input");
 export const weekPreset = document.getElementById("week");
 export const monthPreset = document.getElementById("month");
 
-export const table = document.querySelector(".intervalTable");
+export const dateHeader = document.getElementById("dateHeader");
+export const dateHeaderButton = document.getElementById("dateHeaderButton");
+
+export const holidaysContainer = document.querySelector(".holidaysContainer");
+
+export const intervalTable = document.querySelector(".intervalTable");
+export const holidaysTable = document.querySelector(".holidaysTable");
+export const holidaysTableBody = document.querySelector(".holidaysTable tbody");
 
 export const calculateIntervalButton = document.getElementById("calculateInterval");
+export const calculateHolidaysButton = document.getElementById("searchHolidays");
